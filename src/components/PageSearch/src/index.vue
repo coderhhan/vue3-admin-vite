@@ -28,7 +28,6 @@ const handleSearch = () => {
   console.log('搜索')
   emit('searchBtnClick', formData.value)
 }
-
 </script>
 
 <template>

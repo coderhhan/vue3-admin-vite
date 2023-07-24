@@ -60,7 +60,10 @@ const slotNames = ref(
     <el-table :data="listData" style="width: 100%" :row-key="rowkey">
       <template v-for="column in propsList" :key="column.field">
         <el-table-column v-bind="column" align="center" show-overflow-tooltip>
-          <template #default="scope" v-if="column.slot && slotNames.indexOf(column.slot) != -1">
+          <template
+            #default="scope"
+            v-if="column.slot && slotNames.indexOf(column.slot) != -1"
+          >
             <slot :name="column.slot" :row="scope.row">
               {{ scope.row[column.prop] }}
             </slot>
@@ -73,9 +76,17 @@ const slotNames = ref(
         </el-table-column>
       </template>
     </el-table>
-    <el-pagination v-if="!isHidePagination" style="margin-top:20px" :currentPage="page.currentPage"
-      :page-size="page.pageSize" :page-sizes="[10, 20, 30, 40]" layout="total, sizes, prev, pager, next, jumper"
-      :total="listCount" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
+    <el-pagination
+      v-if="!isHidePagination"
+      style="margin-top: 20px"
+      :currentPage="page.currentPage"
+      :page-size="page.pageSize"
+      :page-sizes="[10, 20, 30, 40]"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="listCount"
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+    />
   </div>
 </template>
 

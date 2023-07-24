@@ -1,10 +1,6 @@
-<script lang='ts' setup>
-import type {
-  MenuParams,
-} from '@/api/acl/menu/type'
-import {
-  reqAddOrUpdateMenu,
-} from '@/api/acl/menu'
+<script lang="ts" setup>
+import type { MenuParams } from '@/api/acl/menu/type'
+import { reqAddOrUpdateMenu } from '@/api/acl/menu'
 import { ref, reactive } from 'vue'
 let dialogVisible = ref(false)
 let menuData = reactive<MenuParams>({
@@ -47,18 +43,27 @@ const handleCancel = (type?: string) => {
 }
 
 defineExpose({
-  showDialog
+  showDialog,
 })
 </script>
- 
+
 <template>
-  <el-dialog v-model="dialogVisible" :title="menuData.id ? '更新菜单' : '添加菜单'">
+  <el-dialog
+    v-model="dialogVisible"
+    :title="menuData.id ? '更新菜单' : '添加菜单'"
+  >
     <el-form>
       <el-form-item label="名称">
-        <el-input placeholder="请你输入菜单的名称" v-model="menuData.name"></el-input>
+        <el-input
+          placeholder="请你输入菜单的名称"
+          v-model="menuData.name"
+        ></el-input>
       </el-form-item>
       <el-form-item label="权限">
-        <el-input placeholder="请你输入权限数值" v-model="menuData.code"></el-input>
+        <el-input
+          placeholder="请你输入权限数值"
+          v-model="menuData.code"
+        ></el-input>
       </el-form-item>
     </el-form>
     <template #footer>
@@ -70,4 +75,4 @@ defineExpose({
   </el-dialog>
 </template>
 
-<style lang = "scss" scoped></style>
+<style lang="scss" scoped></style>

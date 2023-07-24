@@ -8,7 +8,7 @@ let props = defineProps({
     type: String,
     default() {
       return '新建'
-    }
+    },
   },
   pageName: {
     type: String,
@@ -38,7 +38,7 @@ const getPageData = (query: any = {}) => {
     pageNo: pageInfo.value.currentPage,
     pageSize: pageInfo.value.pageSize,
     ...query,
-    pageName: props.pageName
+    pageName: props.pageName,
   })
 }
 getPageData(pageInfo)
@@ -59,15 +59,11 @@ const handleClick = (row: any, type: string) => {
       break
     }
     case 'delete': {
-      ElMessageBox.confirm(
-        '确定要删除吗?',
-        '操作',
-        {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning',
-        }
-      )
+      ElMessageBox.confirm('确定要删除吗?', '操作', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      })
         .then(() => {
           switch (props.pageName) {
             case 'user': {
@@ -92,19 +88,30 @@ const handleClick = (row: any, type: string) => {
 }
 
 defineExpose({
-  getPageData
+  getPageData,
 })
 </script>
 
 <template>
   <el-card class="page-content">
     <div class="content-header">
-      <el-button @click="handleClick(null, 'create')" type="primary">{{ contentConfig.createBtnText }}</el-button>
+      <el-button @click="handleClick(null, 'create')" type="primary">
+        {{ contentConfig.createBtnText }}
+      </el-button>
     </div>
-    <HTable :list-data="pageData" :list-count="pageCount" v-bind="contentConfig" v-model:page="pageInfo">
+    <HTable
+      :list-data="pageData"
+      :list-count="pageCount"
+      v-bind="contentConfig"
+      v-model:page="pageInfo"
+    >
       <template #action="scope">
-        <el-button @click="handleClick(scope.row, 'edit')" type="primary">编辑</el-button>
-        <el-button @click="handleClick(scope.row, 'delete')" type="danger">删除</el-button>
+        <el-button @click="handleClick(scope.row, 'edit')" type="primary">
+          编辑
+        </el-button>
+        <el-button @click="handleClick(scope.row, 'delete')" type="danger">
+          删除
+        </el-button>
       </template>
     </HTable>
   </el-card>
