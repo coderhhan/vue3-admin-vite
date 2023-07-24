@@ -10,17 +10,17 @@ import setting from './setting'
 // import nprogress from 'nprogress'
 // import 'nprogress/nprogress.css'
 import pinia from './store'
-import { SET_TOKEN, GET_TOKEN, REMOVE_TOKEN } from '@/utils/token'
+import { GET_TOKEN } from '@/utils/token'
 import useUserStore from './store/modules/user'
 // nprogress.configure({ showSpinner: false })
-let userStore = useUserStore(pinia)
+const userStore = useUserStore(pinia)
 // 全局前置守卫
 router.beforeEach(async (to, from, next) => {
   document.title = to.meta.title + ` | ${setting.title}`
   // nprogress.start()
 
-  let token = GET_TOKEN()
-  let username = userStore.username
+  const token = GET_TOKEN()
+  const username = userStore.username
   if (token) {
     if (to.path === '/login') {
       next({ path: '/' })

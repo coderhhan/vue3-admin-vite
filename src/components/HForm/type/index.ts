@@ -5,6 +5,7 @@ export interface HFormItem {
   type: IFormType
   label: string
   rules?: any[]
+  isHide?: boolean //是否展示
   placeholder?: any
   // 针对select
   options?: any[]

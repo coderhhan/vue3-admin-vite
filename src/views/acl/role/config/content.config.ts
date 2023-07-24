@@ -1,26 +1,21 @@
 export const contentConfig = {
-  createBtnText: '添加用户',
+  createBtnText: '添加职位',
   propsList: [
     {
       label: 'id',
       prop: 'id',
     },
     {
-      label: '名字',
-      prop: 'name',
-    },
-    {
-      label: '名字',
-      prop: 'username',
-    },
-    {
-      label: '角色名称',
+      label: '职位名称',
       prop: 'roleName',
     },
     {
       label: '创建时间',
       prop: 'createTime',
-      slot: 'createAt',
+    },
+    {
+      label: '更新时间',
+      prop: 'updateTime',
     },
     {
       label: '操作',

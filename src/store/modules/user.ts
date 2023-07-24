@@ -1,13 +1,13 @@
 import { defineStore } from 'pinia'
 import type { UserState } from './types/user.type'
 import router from '@/router'
-import { reqLogin, reqUserInfo, reqLogOut } from '@/api/user'
+import { reqLogin, reqUserInfo } from '@/api/user'
 import type {
   LoginFormData,
   LoginResponseData,
   userInfoResponseData,
 } from '@/api/user/type'
-import { SET_TOKEN, GET_TOKEN, REMOVE_TOKEN } from '@/utils/token'
+import { SET_TOKEN } from '@/utils/token'
 import { filterAsyncRoute } from '@/utils/routeFormat'
 import cloneDeep from 'lodash/cloneDeep'
 import { constantRoute, asyncRoute } from '@/router/routes'
@@ -25,7 +25,7 @@ const useUserStore = defineStore('User', {
   },
   actions: {
     async userLogin(data: LoginFormData) {
-      let res: LoginResponseData = await reqLogin(data)
+      const res: LoginResponseData = await reqLogin(data)
       // success=>token
       // error=>error.message
       if (res.code === 200) {
@@ -38,11 +38,11 @@ const useUserStore = defineStore('User', {
       }
     },
     async userInfo() {
-      let res: userInfoResponseData = await reqUserInfo()
+      const res: userInfoResponseData = await reqUserInfo()
       if (res.code === 200) {
         this.username = res.data.name as string
         this.avatar = res.data.avatar as string
-        let userAsyncRoute = filterAsyncRoute(
+        const userAsyncRoute = filterAsyncRoute(
           cloneDeep(asyncRoute),
           res.data.routes,
         )

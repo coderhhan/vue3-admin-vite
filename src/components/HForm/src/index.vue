@@ -60,7 +60,7 @@ watch(
       <el-row>
         <template v-for="config in formItems" :key="config.field">
           <el-col v-bind="collapseLayout">
-            <el-form-item :label="config.label">
+            <el-form-item :label="config.label" v-if="!config.isHide">
               <el-input v-model="form[`${config.field}`]" v-bind="config" />
             </el-form-item>
           </el-col>

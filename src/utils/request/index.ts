@@ -1,15 +1,15 @@
 // 二次封装axios
 
 import axios from 'axios'
-import { SET_TOKEN, GET_TOKEN, REMOVE_TOKEN } from '@/utils/token'
-let request = axios.create({
+import { GET_TOKEN } from '@/utils/token'
+const request = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API,
   timeout: 5000,
 })
 
 request.interceptors.request.use(
   (config) => {
-    let token = GET_TOKEN()
+    const token = GET_TOKEN()
     if (token) {
       config.headers.token = token
     }
@@ -31,7 +31,7 @@ request.interceptors.response.use(
   },
   (error) => {
     let message = ''
-    let status = error.response.status
+    const status = error.response.status
     switch (status) {
       // 401: 未登录
       // 未登录则跳转登录页面，并携带当前页面的路径

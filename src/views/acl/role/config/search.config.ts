@@ -9,10 +9,10 @@ export const searchConfig: HForm = {
   // },
   formItems: [
     {
-      field: 'username',
-      label: '用户名',
+      field: 'roleName',
+      label: '职位搜索',
       type: 'input',
-      placeholder: '请输入用户名',
+      placeholder: '请输入关键字',
     },
   ],
 }
